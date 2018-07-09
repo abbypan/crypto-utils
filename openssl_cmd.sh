@@ -24,6 +24,9 @@ openssl x509 -inform der -in test.der -out test.pem
 openssl crl2pkcs7 -nocrl -certfile test.crt -out test.p7b -certfile CA.crt
 openssl pkcs7 -print_certs -in test.p7b -out test_with_trust_chain.cer
 
+#outform: PEM(default), DER
+openssl crl2pkcs7 -nocrl -certfile test.crt -out test.p7c -outform DER -certfile CA.crt
+
 #PKCS #12文件转换
 openssl pkcs12 -export -out test.pfx -inkey test.key -in test.crt -certfile CA.crt -password pass:sometestpw
 openssl pkcs12 -in test.pfx -out test_all.cer -nodes -password pass:sometestpw
