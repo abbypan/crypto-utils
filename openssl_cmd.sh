@@ -29,3 +29,18 @@ openssl pkcs12 -export -out test.pfx -inkey test.key -in test.crt -certfile CA.c
 openssl pkcs12 -in test.pfx -out test_all.cer -nodes -password pass:sometestpw
 openssl pkcs12 -in test.pfx -out test_only_priv.cer -nodes -nocerts -password pass:sometestpw
 openssl pkcs12 -in test.pfx -out test_only_cert.cer -nodes -nokeys -password pass:sometestpw
+
+#ECC curves
+openssl ecparam -list_curves
+
+#ecc generate private key & public key
+openssl ecparam -genkey -name prime256v1 -noout -out ecc_priv.pem
+openssl ec -in ecc_priv.pem -pubout -out ecc_pub.pem
+
+#ecc csr
+openssl req -new -key ecc_priv.pem -out ecc.csr -sha256 -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=Cybersecurity/CN=Infosec"
+openssl req -verify -in ecc.csr -text -noout
+
+#ecc sign & verify
+openssl dgst -sha256 -sign ecc_priv.pem -out src.sign src.txt
+openssl dgst -sha256 -verify ecc_pub.pem -signature src.sign src.txt
