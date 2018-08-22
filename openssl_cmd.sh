@@ -45,5 +45,15 @@ openssl req -new -key ecc_priv.pem -out ecc.csr -sha256 -subj "/C=CN/ST=Anhui/L=
 openssl req -verify -in ecc.csr -text -noout
 
 #ecc sign & verify
-openssl dgst -sha256 -sign ecc_priv.pem -out src.sign src.txt
-openssl dgst -sha256 -verify ecc_pub.pem -signature src.sign src.txt
+openssl dgst -sha256 -sign ecc_priv.pem -out src.ecc.sig src.txt
+openssl dgst -sha256 -verify ecc_pub.pem -signature src.ecc.sig src.txt
+
+#rsa sign & verify
+openssl genrsa -out rsa_priv.pem 4096
+openssl rsa -in rsa_priv.pem -pubout > rsa_pub.pem
+openssl dgst -sha256 -binary src.txt > src.txt.sha256
+openssl pkeyutl -sign -in src.txt.sha256 -inkey rsa_priv.pem -pkeyopt digest:sha256 -out src.txt.sha256.rsa.sig
+openssl dgst -sha256 -binary -sign rsa_priv.pem -out src.txt.rsa.sig src.txt
+diff src.txt.sha256.rsa.sig  src.txt.rsa.sig
+openssl dgst -sha256 -verify rsa_pub.pem -signature src.txt.rsa.sig src.txt
+openssl dgst -sha256 -verify rsa_pub.pem -signature src.txt.sha256.rsa.sig src.txt
