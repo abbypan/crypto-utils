@@ -49,6 +49,7 @@ openssl dgst -sha256 -sign ecc_priv.pem -out src.ecc.sig src.txt
 openssl dgst -sha256 -verify ecc_pub.pem -signature src.ecc.sig src.txt
 
 #rsa sign & verify
+#注意，如果手动生成hash再调用私钥进行签名，使用pkeyutl，而非rsautl。否则生成的签名文件可能与直接调dgst -sign生成的签名文件不同：https://stackoverflow.com/questions/9380856/different-signatures-when-using-c-routines-and-openssl-dgst-rsautl-commands
 openssl genrsa -out rsa_priv.pem 4096
 openssl rsa -in rsa_priv.pem -pubout > rsa_pub.pem
 openssl dgst -sha256 -binary src.txt > src.txt.sha256
