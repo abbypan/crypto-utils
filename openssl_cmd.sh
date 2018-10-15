@@ -52,9 +52,20 @@ openssl dgst -sha256 -verify ecc_pub.pem -signature src.ecc.sig src.txt
 #注意，如果手动生成hash再调用私钥进行签名，使用pkeyutl，而非rsautl。否则生成的签名文件可能与直接调dgst -sign生成的签名文件不同：https://stackoverflow.com/questions/9380856/different-signatures-when-using-c-routines-and-openssl-dgst-rsautl-commands
 openssl genrsa -out rsa_priv.pem 4096
 openssl rsa -in rsa_priv.pem -pubout > rsa_pub.pem
+
+echo "RSA直接签名src.txt:"
+openssl dgst -sha256 -binary -sign rsa_priv.pem -out src.txt.rsa.sig src.txt
+openssl dgst -sha256 -verify rsa_pub.pem -signature src.txt.rsa.sig src.txt
+
+echo "RSA使用私钥签名hash值:"
 openssl dgst -sha256 -binary src.txt > src.txt.sha256
 openssl pkeyutl -sign -in src.txt.sha256 -inkey rsa_priv.pem -pkeyopt digest:sha256 -out src.txt.sha256.rsa.sig
-openssl dgst -sha256 -binary -sign rsa_priv.pem -out src.txt.rsa.sig src.txt
-diff src.txt.sha256.rsa.sig  src.txt.rsa.sig
-openssl dgst -sha256 -verify rsa_pub.pem -signature src.txt.rsa.sig src.txt
 openssl dgst -sha256 -verify rsa_pub.pem -signature src.txt.sha256.rsa.sig src.txt
+
+echo "RSA指定pss padding:"
+openssl pkeyutl -sign -in src.txt.sha256 -inkey rsa_priv.pem -pkeyopt rsa_padding_mode:pss -pkeyopt rsa_pss_saltlen:-1 -pkeyopt digest:sha256 -out src.txt.sha256.rsa.pss.sig
+openssl pkeyutl -verify -pubin -inkey rsa_pub.pem -sigfile src.txt.sha256.rsa.pss.sig -in src.txt.sha256 -pkeyopt rsa_padding_mode:pss -pkeyopt rsa_pss_saltlen:-1 -pkeyopt digest:sha256
+
+#25519
+openssl genpkey -algorithm X25519 -out test25519_priv.pem
+openssl pkey -in test25519_priv.pem -pubout -out test25519_pub.pem
