@@ -69,3 +69,22 @@ openssl pkeyutl -verify -pubin -inkey rsa_pub.pem -sigfile src.txt.sha256.rsa.ps
 #25519
 openssl genpkey -algorithm X25519 -out test25519_priv.pem
 openssl pkey -in test25519_priv.pem -pubout -out test25519_pub.pem
+# https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_derive.html
+# https://github.com/alexkrontiris/OpenSSL-x25519-key_exchange
+# https://www.openssl.org/docs/manmaster/man7/X25519.html
+# https://www.openssl.org/docs/manmaster/man7/Ed25519.html
+
+#aes
+#cbc, ecb
+openssl enc -aes-256-cbc -salt -in src.txt -out src.aes-256-cbc.enc -k somepasswd ; wc src.txt src.aes-256-cbc.enc
+#cfb, ofb, ctr, gcm, ccm
+openssl enc -aes-256-ctr -k somepasswd -in src.txt -out src.aes-256-ctr.enc ; wc src.txt src.aes-256-ctr.enc
+
+#gcm
+gcc -Wall -lcrypto -o aes256gcm aes256gcm.c
+gcc -Wall -lcrypto -o aes256gcm-decrypt aes256gcm-decrypt.c
+KEY=a6a7ee7abe681c9c4cede8e3366a9ded96b92668ea5e26a31a4b0856341ed224
+IV=87b7225d16ea2ae1f41d0b13fdce9bba
+#echo -n 'plain text' | ./aes256gcm $KEY $IV | od -t x1
+cat src.txt | ./aes256gcm $KEY $IV > src.aes-256-gcm.enc
+cat src.aes-256-gcm.enc | ./aes256gcm-decrypt $KEY $IV
