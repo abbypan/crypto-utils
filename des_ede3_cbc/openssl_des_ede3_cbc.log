@@ -1,0 +1,28 @@
+
+encrypt:
+src:justfortest
+salt=A1A2A3A4A5A6A7A8
+key=368C84052B50A157EB682EB2A7781F1E914EB579ADCC8E94
+iv =944D2586285C89B8
+
+
+decrypt des-ede3-cbc.enc:
+salt=A1A2A3A4A5A6A7A8
+key=368C84052B50A157EB682EB2A7781F1E914EB579ADCC8E94
+iv =944D2586285C89B8
+decrypt enc:justfortest
+
+
+read_para:
+KEY=368C84052B50A157EB682EB2A7781F1E914EB579ADCC8E94
+IV=944D2586285C89B8
+
+
+read des-ede3-cbc.enc:
+head=53616c7465645f5f
+salt=a1a2a3a4a5a6a7a8
+cipher_content=49185f2e328ad749494ef700188e1996
+
+
+decrypt des-ede3-cbc.cipher:
+decrypt cipher:justfortest
