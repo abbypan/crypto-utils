@@ -1,4 +1,6 @@
-# openssl_cmd
-openssl command
+# crypto sample
+crypto sample
 
-command list: [openssl_cmd.sh](openssl_cmd.sh)
+## openssl command
+
+[openssl_cmd.sh](openssl_cmd/openssl_cmd.sh)
