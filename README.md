@@ -2,18 +2,18 @@
 
 crypto sample, pkcs, pbkdf2, openssl, aes
 
-## install
+# install
 
     $ apt-get install cpanminus openssl libssl-dev
     $ cpanm -n File::Slurp PBKDF2::Tiny Crypt::CBC Digest::SHA Crypt::OpenSSL::PKCS::Func 
 
-## openssl command
+# openssl command
 
 [openssl_cmd.sh](openssl_cmd/openssl_cmd.sh)
 
-## pkcs12
+# pkcs12
 
-Perl: [parse_pkcs12_aes256cbc_sha256.pl](pkcs12/parse_pkcs12_aes256cbc_sha256.pl)
+## Perl: [parse_pkcs12_aes256cbc_sha256.pl](pkcs12/parse_pkcs12_aes256cbc_sha256.pl)
 
     password = "123456"
 
@@ -32,7 +32,7 @@ Perl: [parse_pkcs12_aes256cbc_sha256.pl](pkcs12/parse_pkcs12_aes256cbc_sha256.pl
     $ perl parse_pkcs12_aes256cbc_sha256.pl ttt.p12 123456 SHA-256 32
 
 
-C, OpenSSL 1.0.1t: [parse_pkcs12_aes256cbc_sha256.c](pkcs12/parse_pkcs12_aes256cbc_sha256.)
+## C, OpenSSL 1.0.1t: [parse_pkcs12_aes256cbc_sha256.c](pkcs12/parse_pkcs12_aes256cbc_sha256.c)
 
     $ gcc parse_pkcs12_aes256cbc_sha256.c -lssl -lcrypto -o parse_pkcs12_aes256cbc_sha256
 
