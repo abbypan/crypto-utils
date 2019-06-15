@@ -13,7 +13,7 @@ crypto sample, pkcs, pbkdf2, openssl, aes
 
 ## pkcs12
 
-parse pkcs12 file: [parse_pkcs12_aes256cbc_sha256.pl](pkcs12/parse_pkcs12_aes256cbc_sha256.pl)
+Perl: [parse_pkcs12_aes256cbc_sha256.pl](pkcs12/parse_pkcs12_aes256cbc_sha256.pl)
 
     password = "123456"
 
@@ -30,3 +30,10 @@ parse pkcs12 file: [parse_pkcs12_aes256cbc_sha256.pl](pkcs12/parse_pkcs12_aes256
 
     #p12 file, password, md algorithm, dk len
     $ perl parse_pkcs12_aes256cbc_sha256.pl ttt.p12 123456 SHA-256 32
+
+
+C, openssl: [parse_pkcs12_aes256cbc_sha256.c](pkcs12/parse_pkcs12_aes256cbc_sha256.)
+
+    $ gcc parse_pkcs12_aes256cbc_sha256.c -lssl -lcrypto -o parse_pkcs12_aes256cbc_sha256
+
+    $ ./parse_pkcs12_aes256cbc_sha256 ttt.p12 123456
