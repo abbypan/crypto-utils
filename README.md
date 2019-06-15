@@ -32,7 +32,7 @@ Perl: [parse_pkcs12_aes256cbc_sha256.pl](pkcs12/parse_pkcs12_aes256cbc_sha256.pl
     $ perl parse_pkcs12_aes256cbc_sha256.pl ttt.p12 123456 SHA-256 32
 
 
-C, openssl: [parse_pkcs12_aes256cbc_sha256.c](pkcs12/parse_pkcs12_aes256cbc_sha256.)
+C, OpenSSL 1.0.1t: [parse_pkcs12_aes256cbc_sha256.c](pkcs12/parse_pkcs12_aes256cbc_sha256.)
 
     $ gcc parse_pkcs12_aes256cbc_sha256.c -lssl -lcrypto -o parse_pkcs12_aes256cbc_sha256
 
