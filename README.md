@@ -49,3 +49,7 @@ crypto sample, pkcs, pbkdf2, openssl, aes
     $ gcc parse_pkcs12_aes256cbc_sha256_new.c -lssl -lcrypto -o parse_pkcs12_aes256cbc_sha256_new
 
     $ ./parse_pkcs12_aes256cbc_sha256_new ttt.p12 123456
+
+# [RSASSA-PSS](rsassa_pss/README.md)
+
+sample for RSA2048 + SHA256 + RSASSA-PSS
