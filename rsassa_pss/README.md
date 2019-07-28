@@ -1,6 +1,9 @@
 # RSASSA-PSS 
 
-see also [PKCS #1 v2.2: RSA Cryptography Standard](https://www.emc.com/collateral/white-papers/h11300-pkcs-1v2-2-rsa-cryptography-standard-wp.pdf)
+see also 
+- [PKCS #1 v2.2: RSA Cryptography Standard](https://www.emc.com/collateral/white-papers/h11300-pkcs-1v2-2-rsa-cryptography-standard-wp.pdf)
+- [RFC8017 PKCS #1: RSA Cryptography Specifications Version 2.2](https://tools.ietf.org/html/rfc8017)
+- [RSA-PSS – Provable secure RSA Signaturesand their Implementation](https://rsapss.hboeck.de/rsapss.pdf)
 
 sample of RSA2048 + SHA256 + RSASSA-PSS
 

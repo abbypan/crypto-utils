@@ -50,6 +50,6 @@ crypto sample, pkcs, pbkdf2, openssl, aes
 
     $ ./parse_pkcs12_aes256cbc_sha256_new ttt.p12 123456
 
-# [RSASSA-PSS](rsassa_pss/README.md)
+# [RSASSA-PSS](rsassa_pss/)
 
 sample for RSA2048 + SHA256 + RSASSA-PSS
