@@ -1,0 +1,46 @@
+OCSP Request Data:
+    Version: 1 (0x0)
+    Requestor List:
+        Certificate ID:
+          Hash Algorithm: sha1
+          Issuer Name Hash: F6EDB0636232819A35F68D75A09D024A11AA6CAD
+          Issuer Key Hash: 77C2B8509A677676B12DC286D083A07EA67EBA4B
+          Serial Number: 06DA4B6CAD3471E1D91BA403459F741D
+    Request Extensions:
+        OCSP Nonce: 
+            0410C0102081325F6BD783E3610E6A25AF64
+OCSP Response Data:
+    OCSP Response Status: successful (0x0)
+    Response Type: Basic OCSP Response
+    Version: 1 (0x0)
+    Responder Id: 77C2B8509A677676B12DC286D083A07EA67EBA4B
+    Produced At: Apr 23 06:00:59 2019 GMT
+    Responses:
+    Certificate ID:
+      Hash Algorithm: sha1
+      Issuer Name Hash: F6EDB0636232819A35F68D75A09D024A11AA6CAD
+      Issuer Key Hash: 77C2B8509A677676B12DC286D083A07EA67EBA4B
+      Serial Number: 06DA4B6CAD3471E1D91BA403459F741D
+    Cert Status: good
+    This Update: Apr 23 06:00:59 2019 GMT
+    Next Update: Apr 30 06:00:59 2019 GMT
+
+    Signature Algorithm: sha256WithRSAEncryption
+         b9:93:8a:74:9e:e3:51:97:74:9d:b8:e3:cc:51:62:fc:8f:13:
+         fb:7f:18:02:51:39:41:68:bd:a9:af:5f:4a:f8:ba:af:3d:e9:
+         0c:d2:5a:9d:4b:f6:87:19:50:56:5d:bb:36:c1:3b:a2:57:66:
+         5b:08:56:c3:19:57:fd:6b:cf:e0:5b:8c:d5:33:02:a1:e3:32:
+         b8:df:8e:69:e2:ad:c8:93:66:5e:54:2a:54:58:53:4e:e0:43:
+         45:f0:29:b4:ff:94:20:2b:7b:4c:70:fc:c5:de:f3:36:f5:22:
+         b1:26:4e:7b:b5:95:49:c3:68:39:52:19:37:7a:82:e0:98:d4:
+         de:29:93:10:3c:41:2a:76:60:8c:9b:0a:ea:7a:c0:13:84:5b:
+         49:a4:6c:7d:f7:4c:a9:24:b8:d9:ce:6b:39:b9:96:3f:a6:5d:
+         e5:82:e8:2a:1b:11:b1:96:b6:81:68:b9:f0:87:6a:4a:a3:fa:
+         63:86:61:62:14:95:e9:66:a6:8a:73:f9:bc:3c:0b:c1:79:f6:
+         b5:df:87:02:61:63:b2:53:fd:f6:70:01:dc:28:56:57:ab:da:
+         7a:bb:81:3d:37:7b:d2:bc:b3:d3:ee:67:f7:68:58:a4:32:f0:
+         f5:bf:c7:cc:ba:f5:a9:3c:8d:86:cc:a9:8d:61:f2:f6:88:aa:
+         91:39:96:e9
+google_end.pem: good
+	This Update: Apr 23 06:00:59 2019 GMT
+	Next Update: Apr 30 06:00:59 2019 GMT
