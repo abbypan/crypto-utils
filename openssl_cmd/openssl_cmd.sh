@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#ciphers
+openssl ciphers
+#openssl s_client -cipher ECDHE-ECDSA-AES128-GCM-SHA256 -connect www.google.com:443
+
+
 #连接在线证书，列出trust chain
 #openssl s_client -connect www.taobao.com:443
 
@@ -69,6 +74,10 @@ openssl pkeyutl -verify -pubin -inkey rsa_pub.pem -sigfile src.txt.sha256.rsa.ps
 #25519
 openssl genpkey -algorithm X25519 -out test25519_priv.pem
 openssl pkey -in test25519_priv.pem -pubout -out test25519_pub.pem
+
+#openssl genpkey -algorithm ed25519  -out ed25519_priv.pem
+#openssl genpkey -algorithm x25519  -out x25519_priv.pem
+
 # https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_derive.html
 # https://github.com/alexkrontiris/OpenSSL-x25519-key_exchange
 # https://www.openssl.org/docs/manmaster/man7/X25519.html

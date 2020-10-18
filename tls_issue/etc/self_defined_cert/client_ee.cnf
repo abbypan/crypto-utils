@@ -1,0 +1,12 @@
+[req]
+prompt = no
+default_md = sha256
+distinguished_name = dn
+[dn]
+C=CN
+ST=Anhui
+L=Hefei
+O=USTC
+OU=Cybersecurity
+emailAddress=pump@example.com
+CN = PB02666888
