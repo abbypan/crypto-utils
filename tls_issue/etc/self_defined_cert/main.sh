@@ -84,3 +84,4 @@ keytool -importkeystore -srckeystore client_ee.p12 -srcstoretype PKCS12  -srcsto
 cat client_ee_cert.pem client_intermediate_cert.pem client_root_cert.pem > client_ee_cert_chain.pem
 cat client_intermediate_cert.pem client_root_cert.pem > client_ca_cert_chain.pem
 #}
+

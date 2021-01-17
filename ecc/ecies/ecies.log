@@ -1,0 +1,94 @@
+sender:
+
+cert_file: receiver_ee_cert.pem
+
+temp priv key
+97259978aba610e482a8ece6fb60f7541245faf77db55289dff1812a4333b716
+97 25 99 78 ab a6 10 e4 
+82 a8 ec e6 fb 60 f7 54 
+12 45 fa f7 7d b5 52 89 
+df f1 81 2a 43 33 b7 16 
+
+temp pub pem:
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEtrtfHHJdhmYiSPxoeET9tUJRj4RZ
+Ij9+X2q+VjeCNh/MlzE8wtCDCDYhAw//dM06KU5QKomfpCmDH8Km4qrquw==
+-----END PUBLIC KEY-----
+
+
+receiver public key
+03bc91f251f584f92efcd75a4a33af23761216195b173a758582cfcf20e5b9ee91
+03 bc 91 f2 51 f5 84 f9 
+2e fc d7 5a 4a 33 af 23 
+76 12 16 19 5b 17 3a 75 
+85 82 cf cf 20 e5 b9 ee 
+91 
+
+ecdh z
+29e80243f3efaad093ea8c40c47ced6c3c62b921e8c84717454c3de3c3cf32af
+29 e8 02 43 f3 ef aa d0 
+93 ea 8c 40 c4 7c ed 6c 
+3c 62 b9 21 e8 c8 47 17 
+45 4c 3d e3 c3 cf 32 af 
+
+
+hkdf key
+29e80243f3efaad093ea8c40c47ced6c3c62b921e8c84717454c3de3c3cf32af
+29 e8 02 43 f3 ef aa d0 
+93 ea 8c 40 c4 7c ed 6c 
+3c 62 b9 21 e8 c8 47 17 
+45 4c 3d e3 c3 cf 32 af 
+
+
+hkdf salt
+857ed0bbe56f91b3e6f249e4fcbf0703b042cde1701eba8594a53801e7323c93
+85 7e d0 bb e5 6f 91 b3 
+e6 f2 49 e4 fc bf 07 03 
+b0 42 cd e1 70 1e ba 85 
+94 a5 38 01 e7 32 3c 93 
+
+
+hkdf label: someapp.somebusiness.somelabel
+
+hkdf L: 32
+
+hkdf okm
+24c5fc722816a6380a005433a8f858dbd7201228104641c2333950ea13665412
+24 c5 fc 72 28 16 a6 38 
+0a 00 54 33 a8 f8 58 db 
+d7 20 12 28 10 46 41 c2 
+33 39 50 ea 13 66 54 12 
+
+receiver:
+
+
+receiver priv key
+6b661027c0f34cffc82f1977456fafa3f2b1e4fbbc6fef52bf7a9f400f809906
+6b 66 10 27 c0 f3 4c ff 
+c8 2f 19 77 45 6f af a3 
+f2 b1 e4 fb bc 6f ef 52 
+bf 7a 9f 40 0f 80 99 06 
+
+receive temp pub pem 178
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEtrtfHHJdhmYiSPxoeET9tUJRj4RZ
+Ij9+X2q+VjeCNh/MlzE8wtCDCDYhAw//dM06KU5QKomfpCmDH8Km4qrquw==
+-----END PUBLIC KEY-----
+
+ret: 0
+
+temp public key
+03b6bb5f1c725d86662248fc687844fdb542518f8459223f7e5f6abe563782361f
+03 b6 bb 5f 1c 72 5d 86 
+66 22 48 fc 68 78 44 fd 
+b5 42 51 8f 84 59 22 3f 
+7e 5f 6a be 56 37 82 36 
+1f 
+
+ecdh z
+29e80243f3efaad093ea8c40c47ced6c3c62b921e8c84717454c3de3c3cf32af
+29 e8 02 43 f3 ef aa d0 
+93 ea 8c 40 c4 7c ed 6c 
+3c 62 b9 21 e8 c8 47 17 
+45 4c 3d e3 c3 cf 32 af 
+

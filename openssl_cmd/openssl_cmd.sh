@@ -78,6 +78,8 @@ openssl pkey -in test25519_priv.pem -pubout -out test25519_pub.pem
 #openssl genpkey -algorithm ed25519  -out ed25519_priv.pem
 #openssl genpkey -algorithm x25519  -out x25519_priv.pem
 
+#ssh-keygen -t ed25519 -o -a 256
+
 # https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_derive.html
 # https://github.com/alexkrontiris/OpenSSL-x25519-key_exchange
 # https://www.openssl.org/docs/manmaster/man7/X25519.html
