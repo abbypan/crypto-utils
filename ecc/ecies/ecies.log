@@ -3,16 +3,16 @@ sender:
 cert_file: receiver_ee_cert.pem
 
 temp priv key, 32
-663b1dfeea4a2360b1e9da17eef792d12ad65ebc4fc9bdc63a1c20d4f3fbf535
-66 3b 1d fe ea 4a 23 60 
-b1 e9 da 17 ee f7 92 d1 
-2a d6 5e bc 4f c9 bd c6 
-3a 1c 20 d4 f3 fb f5 35 
+76b81d54547078c4939d33dd65859da06daab7125866b5d1171cd763265c9040
+76 b8 1d 54 54 70 78 c4 
+93 9d 33 dd 65 85 9d a0 
+6d aa b7 12 58 66 b5 d1 
+17 1c d7 63 26 5c 90 40 
 
 temp pub pem:
 -----BEGIN PUBLIC KEY-----
-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEx+dCOl3+2xpiSVfowCX7Fre4suCs
-xKeFTMBxsut/nhECeUqwXIhMrrXf+JwbGwEnK5IqKftMRIhHKd1MGJMYfQ==
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEn5lppy+QTGO7C3r2GguirNCox7aH
+wCInsqX06pfQ/LfVhgLs8zV+twQW43zVZUkzKwGfVJ9dqyX7QKBnj83rvw==
 -----END PUBLIC KEY-----
 
 
@@ -25,36 +25,37 @@ receiver public key, 33
 91 
 
 sender ecdh z, 32
-b2ae2452ef13a169c1d74c934ab38759d2aa277568966af33be840d77289282d
-b2 ae 24 52 ef 13 a1 69 
-c1 d7 4c 93 4a b3 87 59 
-d2 aa 27 75 68 96 6a f3 
-3b e8 40 d7 72 89 28 2d 
+d6e6ef62264aca120760f76309ffffdd744c30200885763666054c992e5ae8c1
+d6 e6 ef 62 26 4a ca 12 
+07 60 f7 63 09 ff ff dd 
+74 4c 30 20 08 85 76 36 
+66 05 4c 99 2e 5a e8 c1 
 
 
-hkdf key, 8
-b2ae2452ef13a169
-b2 ae 24 52 ef 13 a1 69 
+hkdf key, 32
+d6e6ef62264aca120760f76309ffffdd744c30200885763666054c992e5ae8c1
+d6 e6 ef 62 26 4a ca 12 
+07 60 f7 63 09 ff ff dd 
+74 4c 30 20 08 85 76 36 
+66 05 4c 99 2e 5a e8 c1 
 
 
 hkdf salt, 32
-22807c4c06f06f3ea6b63f77105406ab1830e8d666188411b8bf5c321e668364
-22 80 7c 4c 06 f0 6f 3e 
-a6 b6 3f 77 10 54 06 ab 
-18 30 e8 d6 66 18 84 11 
-b8 bf 5c 32 1e 66 83 64 
+12b2470c8b1450ae64863ca1cab205cfaa06d9d0bac5d18098ca9632926fcb95
+12 b2 47 0c 8b 14 50 ae 
+64 86 3c a1 ca b2 05 cf 
+aa 06 d9 d0 ba c5 d1 80 
+98 ca 96 32 92 6f cb 95 
 
-
-hkdf label: someapp.somebusiness.somelabel
 
 hkdf L: 32
 
 hkdf okm, 32
-0ff461c72a6d999f09edd386d3edd717a3e77f9e3429f749f623143da97ce9a5
-0f f4 61 c7 2a 6d 99 9f 
-09 ed d3 86 d3 ed d7 17 
-a3 e7 7f 9e 34 29 f7 49 
-f6 23 14 3d a9 7c e9 a5 
+d959787b4cbccf5d7d9eeaebf6c335cd750d57c1514ce178ee52014a7857e9ca
+d9 59 78 7b 4c bc cf 5d 
+7d 9e ea eb f6 c3 35 cd 
+75 0d 57 c1 51 4c e1 78 
+ee 52 01 4a 78 57 e9 ca 
 
 
 aes encrypt: plaintext, 51
@@ -67,40 +68,40 @@ aes encrypt: plaintext, 51
 36 36 36 36 36 36 36 36 
 36 36 36 
 
-aes key, 32
-0ff461c72a6d999f09edd386d3edd717a3e77f9e3429f749f623143da97ce9a5
-0f f4 61 c7 2a 6d 99 9f 
-09 ed d3 86 d3 ed d7 17 
-a3 e7 7f 9e 34 29 f7 49 
-f6 23 14 3d a9 7c e9 a5 
+aes encrypt key, 32
+d959787b4cbccf5d7d9eeaebf6c335cd750d57c1514ce178ee52014a7857e9ca
+d9 59 78 7b 4c bc cf 5d 
+7d 9e ea eb f6 c3 35 cd 
+75 0d 57 c1 51 4c e1 78 
+ee 52 01 4a 78 57 e9 ca 
 
 
-aes iv, 12
-21f692a1fbf19d39619a131e
-21 f6 92 a1 fb f1 9d 39 
-61 9a 13 1e 
+aes encrypt iv, 12
+bb9141de504f39d61b06e466
+bb 91 41 de 50 4f 39 d6 
+1b 06 e4 66 
 
-aes aad, 18
+aes encrypt aad, 18
 736f6d656465766963652e636f6e74657874
 73 6f 6d 65 64 65 76 69 
 63 65 2e 63 6f 6e 74 65 
 78 74 
 
 aes encrypt: tag, 16
-34a730c86e0136535ed34677f46099c4
-34 a7 30 c8 6e 01 36 53 
-5e d3 46 77 f4 60 99 c4 
+1e257aa426da9773a3da2b67e115d0fd
+1e 25 7a a4 26 da 97 73 
+a3 da 2b 67 e1 15 d0 fd 
 
 
 aes encrypt: cipher, 51
-b8c8a467f10e36d6fa9872dadc3eb5308368fce934e9c410365c5724036f34e234b7a38cb9f78e1a8c17a61d7e25b5fc307eea
-b8 c8 a4 67 f1 0e 36 d6 
-fa 98 72 da dc 3e b5 30 
-83 68 fc e9 34 e9 c4 10 
-36 5c 57 24 03 6f 34 e2 
-34 b7 a3 8c b9 f7 8e 1a 
-8c 17 a6 1d 7e 25 b5 fc 
-30 7e ea 
+3ce7d72975ace7fd5499fcfae3948a392eaf001e956a933946704ff20fae17db59ce7b7247921395e397056cf7be95e2938e0e
+3c e7 d7 29 75 ac e7 fd 
+54 99 fc fa e3 94 8a 39 
+2e af 00 1e 95 6a 93 39 
+46 70 4f f2 0f ae 17 db 
+59 ce 7b 72 47 92 13 95 
+e3 97 05 6c f7 be 95 e2 
+93 8e 0e 
 
 receiver:
 
@@ -114,82 +115,88 @@ bf 7a 9f 40 0f 80 99 06
 
 receive temp pub pem 178
 -----BEGIN PUBLIC KEY-----
-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEx+dCOl3+2xpiSVfowCX7Fre4suCs
-xKeFTMBxsut/nhECeUqwXIhMrrXf+JwbGwEnK5IqKftMRIhHKd1MGJMYfQ==
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEn5lppy+QTGO7C3r2GguirNCox7aH
+wCInsqX06pfQ/LfVhgLs8zV+twQW43zVZUkzKwGfVJ9dqyX7QKBnj83rvw==
 -----END PUBLIC KEY-----
 
 ret: 0
 
 temp public key, 33
-03c7e7423a5dfedb1a624957e8c025fb16b7b8b2e0acc4a7854cc071b2eb7f9e11
-03 c7 e7 42 3a 5d fe db 
-1a 62 49 57 e8 c0 25 fb 
-16 b7 b8 b2 e0 ac c4 a7 
-85 4c c0 71 b2 eb 7f 9e 
-11 
+039f9969a72f904c63bb0b7af61a0ba2acd0a8c7b687c02227b2a5f4ea97d0fcb7
+03 9f 99 69 a7 2f 90 4c 
+63 bb 0b 7a f6 1a 0b a2 
+ac d0 a8 c7 b6 87 c0 22 
+27 b2 a5 f4 ea 97 d0 fc 
+b7 
 
 ecdh z, 32
-b2ae2452ef13a169c1d74c934ab38759d2aa277568966af33be840d77289282d
-b2 ae 24 52 ef 13 a1 69 
-c1 d7 4c 93 4a b3 87 59 
-d2 aa 27 75 68 96 6a f3 
-3b e8 40 d7 72 89 28 2d 
+d6e6ef62264aca120760f76309ffffdd744c30200885763666054c992e5ae8c1
+d6 e6 ef 62 26 4a ca 12 
+07 60 f7 63 09 ff ff dd 
+74 4c 30 20 08 85 76 36 
+66 05 4c 99 2e 5a e8 c1 
 
-receiver_z len: 32
 
-hkdf key, 8
-b2ae2452ef13a169
-b2 ae 24 52 ef 13 a1 69 
+hkdf key, 32
+d6e6ef62264aca120760f76309ffffdd744c30200885763666054c992e5ae8c1
+d6 e6 ef 62 26 4a ca 12 
+07 60 f7 63 09 ff ff dd 
+74 4c 30 20 08 85 76 36 
+66 05 4c 99 2e 5a e8 c1 
 
 
 hkdf salt, 32
-22807c4c06f06f3ea6b63f77105406ab1830e8d666188411b8bf5c321e668364
-22 80 7c 4c 06 f0 6f 3e 
-a6 b6 3f 77 10 54 06 ab 
-18 30 e8 d6 66 18 84 11 
-b8 bf 5c 32 1e 66 83 64 
+12b2470c8b1450ae64863ca1cab205cfaa06d9d0bac5d18098ca9632926fcb95
+12 b2 47 0c 8b 14 50 ae 
+64 86 3c a1 ca b2 05 cf 
+aa 06 d9 d0 ba c5 d1 80 
+98 ca 96 32 92 6f cb 95 
 
-
-hkdf label: someapp.somebusiness.somelabel
 
 hkdf L: 32
 
 hkdf okm, 32
-0ff461c72a6d999f09edd386d3edd717a3e77f9e3429f749f623143da97ce9a5
-0f f4 61 c7 2a 6d 99 9f 
-09 ed d3 86 d3 ed d7 17 
-a3 e7 7f 9e 34 29 f7 49 
-f6 23 14 3d a9 7c e9 a5 
+d959787b4cbccf5d7d9eeaebf6c335cd750d57c1514ce178ee52014a7857e9ca
+d9 59 78 7b 4c bc cf 5d 
+7d 9e ea eb f6 c3 35 cd 
+75 0d 57 c1 51 4c e1 78 
+ee 52 01 4a 78 57 e9 ca 
 
 
 aes decrypt: cipher, 51
-b8c8a467f10e36d6fa9872dadc3eb5308368fce934e9c410365c5724036f34e234b7a38cb9f78e1a8c17a61d7e25b5fc307eea
-b8 c8 a4 67 f1 0e 36 d6 
-fa 98 72 da dc 3e b5 30 
-83 68 fc e9 34 e9 c4 10 
-36 5c 57 24 03 6f 34 e2 
-34 b7 a3 8c b9 f7 8e 1a 
-8c 17 a6 1d 7e 25 b5 fc 
-30 7e ea 
+3ce7d72975ace7fd5499fcfae3948a392eaf001e956a933946704ff20fae17db59ce7b7247921395e397056cf7be95e2938e0e
+3c e7 d7 29 75 ac e7 fd 
+54 99 fc fa e3 94 8a 39 
+2e af 00 1e 95 6a 93 39 
+46 70 4f f2 0f ae 17 db 
+59 ce 7b 72 47 92 13 95 
+e3 97 05 6c f7 be 95 e2 
+93 8e 0e 
 
-aes key, 32
-0ff461c72a6d999f09edd386d3edd717a3e77f9e3429f749f623143da97ce9a5
-0f f4 61 c7 2a 6d 99 9f 
-09 ed d3 86 d3 ed d7 17 
-a3 e7 7f 9e 34 29 f7 49 
-f6 23 14 3d a9 7c e9 a5 
+aes decrypt key, 32
+d959787b4cbccf5d7d9eeaebf6c335cd750d57c1514ce178ee52014a7857e9ca
+d9 59 78 7b 4c bc cf 5d 
+7d 9e ea eb f6 c3 35 cd 
+75 0d 57 c1 51 4c e1 78 
+ee 52 01 4a 78 57 e9 ca 
 
 
-aes iv, 12
-21f692a1fbf19d39619a131e
-21 f6 92 a1 fb f1 9d 39 
-61 9a 13 1e 
+aes decrypt iv, 12
+bb9141de504f39d61b06e466
+bb 91 41 de 50 4f 39 d6 
+1b 06 e4 66 
 
-aes aad, 18
+aes decrypt aad, 18
 736f6d656465766963652e636f6e74657874
 73 6f 6d 65 64 65 76 69 
 63 65 2e 63 6f 6e 74 65 
 78 74 
+
+aes decrypt: tag, 16
+1e257aa426da9773a3da2b67e115d0fd
+1e 25 7a a4 26 da 97 73 
+a3 da 2b 67 e1 15 d0 fd 
+
 
 aes decrypt: plaintext, 51
 66756a69616e207175616e7a686f75203636363636363636363636363636363636363636363636363636363636363636363636
