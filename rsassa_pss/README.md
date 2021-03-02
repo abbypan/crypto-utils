@@ -13,6 +13,9 @@ sample of RSA2048 + SHA256 + RSASSA-PSS
 
 # prepare test data
 
+    # saltlen == EVP_MD_CTX_FLAG_PSS_MDLEN  ~  -1
+    # saltlen == EVP_MD_CTX_FLAG_PSS_MREC   ~  -2 
+
     $ openssl genrsa -out rsa_priv.pem 2048
     $ openssl rsa -in rsa_priv.pem -pubout -out rsa_pub.pem
 
@@ -25,6 +28,10 @@ sample of RSA2048 + SHA256 + RSASSA-PSS
 
     $ openssl pkeyutl -sign -in src.dgst -inkey rsa_priv.pem -pkeyopt rsa_padding_mode:pss -pkeyopt rsa_pss_saltlen:-1 -pkeyopt digest:sha256 -out src.sig
     $ openssl pkeyutl -verify -pubin -inkey rsa_pub.pem -sigfile src.sig -in src.dgst -pkeyopt rsa_padding_mode:pss -pkeyopt rsa_pss_saltlen:-1 -pkeyopt digest:sha256
+    $ openssl dgst -sha256 -verify rsa_pub.pem -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -signature src.sig src.bin
+    
+    $ openssl dgst -sha256 -sign rsa_priv.pem -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -out src.direct.sig src.bin
+    $ openssl dgst -sha256 -verify rsa_pub.pem -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -signature src.direct.sig src.bin
 
 
 # test data

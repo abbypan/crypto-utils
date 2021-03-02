@@ -60,4 +60,3 @@ v = X.x %  curve.field.n
 print("v: " + hex(v))
 verify_result = v == rr['r'] 
 print(verify_result)
-
