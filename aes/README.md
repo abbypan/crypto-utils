@@ -26,3 +26,10 @@ perl aes-cbc-decrypt.pl [key_hex] [iv_hex] [cipher_hex]
     plain: 0102ff0304
 
 
+# aes-gcm with aad
+
+    gcc -lmbedtls -lmbedcrypto -lmbedx509 aes-gcm-aad-encrypt.c -o aes-gcm-aad-encrypt
+    ./aes-gcm-aad-encrypt 6e4d19cc35eb977bf2c33a2de9d51e3d794702ca6b87105ae1874b18f5e1db6f b79e546d643b1d3a935d1377 somedevice.context plain.txt cipher.bin authtag.bin
+
+    gcc -lmbedtls -lmbedcrypto -lmbedx509 aes-gcm-aad-decrypt.c -o aes-gcm-aad-decrypt
+    ./aes-gcm-aad-decrypt 6e4d19cc35eb977bf2c33a2de9d51e3d794702ca6b87105ae1874b18f5e1db6f b79e546d643b1d3a935d1377 somedevice.context cipher.bin authtag.bin decrypt.txt
