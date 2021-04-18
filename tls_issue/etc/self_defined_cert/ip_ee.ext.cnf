@@ -1,0 +1,14 @@
+# v3.ext
+
+#authorityKeyIdentifier=keyid,issuer
+authorityKeyIdentifier=keyid
+
+subjectKeyIdentifier=hash
+
+basicConstraints=CA:FALSE
+#basicConstraints=CA:TRUE
+
+#keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+keyUsage = digitalSignature, keyEncipherment, dataEncipherment
+
+extendedKeyUsage = TLS Web Server Authentication, TLS Web Client Authentication, codeSigning

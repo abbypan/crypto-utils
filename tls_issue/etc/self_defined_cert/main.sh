@@ -85,3 +85,16 @@ cat client_ee_cert.pem client_intermediate_cert.pem client_root_cert.pem > clien
 cat client_intermediate_cert.pem client_root_cert.pem > client_ca_cert_chain.pem
 #}
 
+## ip ee {
+#openssl ecparam -genkey -name prime256v1 -noout -out ip_ee_priv.pem
+openssl pkcs8 -topk8 -inform pem -in ip_ee_priv.pem -outform pem -nocrypt -out ip_ee_priv_pkcs8.pem
+openssl ec -in ip_ee_priv.pem -pubout -out ip_ee_pub.pem
+openssl req -new -key ip_ee_priv.pem -out ip_ee.csr -sha256 -config ip_ee.cnf
+openssl req -verify -in ip_ee.csr -text -noout
+openssl x509 -req -in ip_ee.csr -out ip_ee_cert.pem -signkey ip_ee_priv.pem -days 3333 -sha256 -extfile ip_ee.ext.cnf
+openssl x509 -text -in ip_ee_cert.pem
+
+IP_EE_PWD=sipeep12
+openssl pkcs12 -export -in ip_ee_cert.pem -inkey ip_ee_priv.pem -passout pass:$IP_EE_PWD -out ip_ee.p12
+keytool -importkeystore -srckeystore ip_ee.p12 -srcstoretype pkcs12  -srcstorepass $IP_EE_PWD -destkeystore ip_ee.jks -deststoretype jks -deststorepass $IP_EE_PWD
+## }

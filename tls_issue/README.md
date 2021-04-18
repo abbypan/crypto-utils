@@ -158,6 +158,61 @@
     </html>
 
 
+## local ip
+
+    $ curl -vv --cacert /etc/self_defined_cert/ip_ee_cert.pem https://192.168.1.5
+    *   Trying 192.168.1.5:443...
+    * Connected to 192.168.1.5 (192.168.1.5) port 443 (#0)
+    * ALPN, offering h2
+    * ALPN, offering http/1.1
+    * successfully set certificate verify locations:
+    *  CAfile: /etc/self_defined_cert/ip_ee_cert.pem
+    *  CApath: none
+    * TLSv1.3 (OUT), TLS handshake, Client hello (1):
+    * TLSv1.3 (IN), TLS handshake, Server hello (2):
+    * TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+    * TLSv1.3 (IN), TLS handshake, Certificate (11):
+    * TLSv1.3 (IN), TLS handshake, CERT verify (15):
+    * TLSv1.3 (IN), TLS handshake, Finished (20):
+    * TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+    * TLSv1.3 (OUT), TLS handshake, Finished (20):
+    * SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+    * ALPN, server accepted to use http/1.1
+    * Server certificate:
+    *  subject: C=CN; ST=Anhui; L=Hefei; O=USTC; OU=Cybersecurity; emailAddress=pump@example.com; CN=192.168.1.5
+    *  start date: Apr 18 17:06:24 2021 GMT
+    *  expire date: Jun  3 17:06:24 2030 GMT
+    *  common name: 192.168.1.5 (matched)
+    *  issuer: C=CN; ST=Anhui; L=Hefei; O=USTC; OU=Cybersecurity; emailAddress=pump@example.com; CN=192.168.1.5
+    *  SSL certificate verify ok.
+    > GET / HTTP/1.1
+    > Host: 192.168.1.5
+    > User-Agent: curl/7.73.0
+    > Accept: */*
+    > 
+    * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+    * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+    * old SSL session ID is stale, removing
+    * Mark bundle as not supporting multiuse
+    < HTTP/1.1 200 OK
+    < Server: nginx/1.18.0
+    < Date: Sun, 18 Apr 2021 17:08:34 GMT
+    < Content-Type: text/html
+    < Content-Length: 49
+    < Last-Modified: Sat, 17 Oct 2020 16:17:01 GMT
+    < Connection: keep-alive
+    < ETag: "5f8b18fd-31"
+    < Accept-Ranges: bytes
+    < 
+    <html>
+    <body>
+    just for test
+    </body>
+    </html>
+
+    * Connection #0 to host 192.168.1.5 left intact
+
+
 # okhttp
 
     $ cd okhttp
