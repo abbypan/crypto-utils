@@ -44,6 +44,7 @@ openssl ecparam -list_curves
 #ecc generate private key & public key
 openssl ecparam -genkey -name prime256v1 -noout -out ecc_priv.pem
 openssl ec -in ecc_priv.pem -pubout -out ecc_pub.pem
+openssl ec -pubin -in ecc_pub.pem -conv_form compressed -outform DER -out ecc_pub_compressed.der
 
 #ecc csr
 openssl req -new -key ecc_priv.pem -out ecc.csr -sha256 -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=Cybersecurity/CN=Infosec"
