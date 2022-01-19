@@ -23,7 +23,7 @@ sub x963_kdf {
         my $c4 = pack 'L>', $counter;
 
         $dgst->add($z.$c4.$shared_info);
-my $d = $dgst->digest();
+        my $d = $dgst->digest();
         my $dlen = length($d);
 
         if($dlen <= $key_data_len){
