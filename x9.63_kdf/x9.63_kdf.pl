@@ -15,7 +15,6 @@ sub x963_kdf {
 
     my $counter = 1;
     my $k = '';
-    my $current_len = 0;
 
     while($key_data_len>0){
         my $dgst = Digest->new($hash_name);
