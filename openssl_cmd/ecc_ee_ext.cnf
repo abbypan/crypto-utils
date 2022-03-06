@@ -1,0 +1,27 @@
+oid_section = new_oids
+
+[ req ]
+prompt = no
+encrypt_key = no
+default_md = sha256
+distinguished_name = dn
+req_extensions = req_ext
+
+[ new_oids ]
+test_oid = 1.2.3.4.56.78
+test_oid2 = 1.2.3.4.56.89
+test_oid3 = 1.2.3.4.56.90
+
+
+[ dn ]
+CN = Just For Test
+O = TTT
+C = CN
+
+[ req_ext ]
+subjectAltName = email:justfortest@example.com
+test_oid =ASN1:PRINTABLESTRING:Future
+test_oid2 =ASN1:OCTETSTRING:01010203
+test_oid3 =ASN1:FORMAT:HEX,OCTETSTRING:41424344
+
+

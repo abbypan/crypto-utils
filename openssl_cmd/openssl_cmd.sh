@@ -50,6 +50,9 @@ openssl ec -pubin -in ecc_pub.pem -conv_form compressed -outform DER -out ecc_pu
 openssl req -new -key ecc_priv.pem -out ecc.csr -sha256 -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=Cybersecurity/CN=Infosec"
 openssl req -verify -in ecc.csr -text -noout
 
+openssl req -config ecc_ee_ext.cnf -new -key ecc_priv.pem -out ecc_ee_ext.csr
+openssl req -verify -in ecc_ee_ext.csr -text -noout
+
 #ecc sign & verify
 openssl dgst -sha256 -sign ecc_priv.pem -out src.ecc.sig src.txt
 openssl dgst -sha256 -verify ecc_pub.pem -signature src.ecc.sig src.txt
