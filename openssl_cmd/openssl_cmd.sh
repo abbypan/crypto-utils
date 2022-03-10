@@ -52,6 +52,8 @@ openssl req -verify -in ecc.csr -text -noout
 
 openssl req -config ecc_ee_ext.cnf -new -key ecc_priv.pem -out ecc_ee_ext.csr
 openssl req -verify -in ecc_ee_ext.csr -text -noout
+openssl x509 -req -days 360 -in ecc_ee_ext.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out ecc_ee_ext.crt -sha256 -extfile ecc_ee_ext.cnf -extensions req_ext
+openssl x509 -text -in ecc_ee_ext.crt
 
 #ecc sign & verify
 openssl dgst -sha256 -sign ecc_priv.pem -out src.ecc.sig src.txt
