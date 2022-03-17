@@ -21,20 +21,22 @@ int main(int argc, char *argv[]) {
     const EVP_MD *md_type;
     md_type = NULL; // no digest
 
-    unsigned char sig[64];
+
+    unsigned char *sig;
     size_t siglen;
 
-    unsigned char dgst[32];
-    size_t dgstlen;
-    FILE *dptr;
+    unsigned char dgst[1024];
+    size_t dgstlen=1024;
 
-    dptr = fopen(argv[2],"rb");
-    fread(dgst,sizeof(dgst), 1, dptr);
-    dgstlen=sizeof(dgst);
-
+    BIO *dgstf;
+    dgstf = BIO_new_file(argv[2], "r");
+    dgstlen = BIO_read(dgstf, dgst, dgstlen);
 
     EVP_DigestSignInit(ctx, NULL, md_type, NULL, pkey);
-    int r = EVP_DigestSign(ctx, sig, &siglen, dgst, dgstlen );
+
+    EVP_DigestSign(ctx, NULL, &siglen, dgst, dgstlen);
+    sig = malloc(siglen);
+    int r = EVP_DigestSign(ctx, sig, &siglen, dgst, dgstlen);
     printf("[sign] status: %d, siglen: %d, dgstlen %d\n", r, siglen, dgstlen);
 
     BIO *pubout;

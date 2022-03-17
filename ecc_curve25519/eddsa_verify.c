@@ -16,30 +16,26 @@ int main(int argc, char* argv[]) {
     PEM_write_PUBKEY(stdout, pubkey);
 
 
-    unsigned char sig[64];
-    size_t siglen;
-    FILE *pubtr;
+    unsigned char sig[1024];
+    size_t siglen=1024;
 
-    pubtr = fopen(argv[3],"rb");
-    fread(sig,sizeof(sig), 1, pubtr);
-    siglen=sizeof(sig);
-
+    BIO *sigf;
+    sigf = BIO_new_file(argv[3], "rb");
+    siglen = BIO_read(sigf, sig, siglen);
 
     EVP_MD_CTX *pubctx;
     pubctx = EVP_MD_CTX_new();
 
     const EVP_MD *md_type;
     md_type = NULL; // no digest
-
     EVP_DigestVerifyInit(pubctx, NULL, NULL, NULL, pubkey);
 
-    unsigned char dgst[32];
-    size_t dgstlen;
-    FILE *dptr;
+    unsigned char dgst[1024];
+    size_t dgstlen=1024;
 
-    dptr = fopen(argv[2],"rb");
-    fread(dgst,sizeof(dgst), 1, dptr);
-    dgstlen=sizeof(dgst);
+    BIO *dgstf;
+    dgstf = BIO_new_file(argv[2], "r");
+    dgstlen = BIO_read(dgstf, dgst, dgstlen);
 
     int r=EVP_DigestVerify(pubctx, sig, siglen, dgst, dgstlen);
 
