@@ -6,6 +6,7 @@ use File::Slurp qw/slurp/;
 my ($key, $iv, $aad, $plain_f) = @ARGV;
 $key = pack("H*", $key);
 $iv = pack("H*", $iv);
+#$aad =undef;
 
 my $cipher = 'AES';
 my $plaintext = slurp($plain_f);
