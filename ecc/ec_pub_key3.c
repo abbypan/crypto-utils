@@ -52,3 +52,26 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
+/*EVP_PKEY* evp_pkey_from_point_hex(group, dst_fname, point_hex, ctx)  {*/
+    /*EC_KEY* ec_key = EC_KEY_new();*/
+    /*EC_KEY_set_group(ec_key, group);*/
+
+    /*EC_POINT* ec_pub_point = EC_POINT_new(group);*/
+    /*ec_pub_point = EC_POINT_hex2point(group, point_hex, ec_pub_point, ctx);*/
+    /*EC_KEY_set_public_key(ec_key, ec_pub_point);*/
+
+    /*EVP_PKEY *pkey = EVP_PKEY_new();*/
+    /*EVP_PKEY_assign_EC_KEY(pkey, ec_key);*/
+
+    /*return pkey;*/
+/*}*/
+
+
+/*int pem_write_evp_pubkey(dst_fname, pkey)  {*/
+    /*BIO *pubout;*/
+    /*pubout = BIO_new_file(dst_fname, "w+");*/
+    /*PEM_write_bio_PUBKEY(pubout, pkey);*/
+    /*BIO_flush(pubout);*/
+    /*return 1;*/
+/*}*/

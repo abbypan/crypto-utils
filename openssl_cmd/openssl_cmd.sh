@@ -32,6 +32,10 @@ openssl pkcs7 -print_certs -in test.p7b -out test_with_trust_chain.cer
 #outform: PEM(default), DER
 openssl crl2pkcs7 -nocrl -certfile test.crt -out test.p7c -outform DER -certfile CA.crt
 
+#p7s
+#openssl cms -cmsout -in test.p7s -inform DER -noout -print
+
+
 #PKCS #12文件转换
 openssl pkcs12 -export -out test.pfx -inkey test.key -in test.crt -certfile CA.crt -password pass:sometestpw
 openssl pkcs12 -in test.pfx -out test_all.cer -nodes -password pass:sometestpw
@@ -97,6 +101,10 @@ openssl enc -aes-256-cbc -salt -in src.txt -out src.aes-256-cbc.enc -k somepassw
 #cfb, ofb, ctr, gcm, ccm
 openssl enc -aes-256-ctr -k somepasswd -in src.txt -out src.aes-256-ctr.enc ; wc src.txt src.aes-256-ctr.enc
 
+#K, iv
+openssl enc -aes-128-ctr -in src.txt -out src.aes-128-ctr.enc -K a6a7ee7abe681c9c4cede8e3366a9ded -iv 87b7225d16ea2ae1f41d0b13fdce9bba
+openssl enc -d -aes-128-ctr -in src.aes-128-ctr.enc -out src.txt.dec -K a6a7ee7abe681c9c4cede8e3366a9ded -iv 87b7225d16ea2ae1f41d0b13fdce9bba
+
 #gcm
 gcc -Wall -lcrypto -o aes256gcm aes256gcm.c
 gcc -Wall -lcrypto -o aes256gcm-decrypt aes256gcm-decrypt.c
@@ -105,3 +113,6 @@ IV=87b7225d16ea2ae1f41d0b13fdce9bba
 #echo -n 'plain text' | ./aes256gcm $KEY $IV | od -t x1
 cat src.txt | ./aes256gcm $KEY $IV > src.aes-256-gcm.enc
 cat src.aes-256-gcm.enc | ./aes256gcm-decrypt $KEY $IV
+
+#hmac
+openssl mac -macopt digest:SHA256 -macopt hexkey:a27e195cf3ea9755eceb1f77ca0dd20ba1fdaa8832f1b2fb637c8912ad3dce13 -in plain.txt HMAC

@@ -1,6 +1,6 @@
 LIBRARIES = -lcrypto
 
-all: eddsa_sign eddsa_verify ec_keypair ec_priv_key ec_pub_key ec_pub_key2 ec_pub_key3 ec_pub_key_read hash_to_curve
+all: eddsa_sign eddsa_verify ec_keypair ec_priv_key ec_pub_key ec_pub_key2 ec_pub_key3 ec_pub_key_read hash_to_curve cpace_calc_K
 
 ec_priv_key: ec_priv_key.c
 	gcc ec_priv_key.c $(LIBRARIES) -o ec_priv_key
@@ -29,5 +29,9 @@ ec_pub_key_read: ec_pub_key_read.c
 hash_to_curve: hash_to_curve.c
 	gcc hash_to_curve.c $(LIBRARIES) -o hash_to_curve
 
+cpace_calc_K: cpace_calc_K.c
+	gcc cpace_calc_K.c $(LIBRARIES) -o cpace_calc_K
+
 clean:
-	rm eddsa_sign eddsa_verify ec_keypair ec_priv_key ec_pub_key ec_pub_key2 ec_pub_key3 ec_pub_key_read hash_to_curve
+	rm eddsa_sign eddsa_verify ec_keypair ec_priv_key ec_pub_key ec_pub_key2 ec_pub_key3 ec_pub_key_read hash_to_curve cpace_calc_K
+

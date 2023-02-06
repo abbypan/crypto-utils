@@ -169,14 +169,12 @@ int clear_cofactor(EC_GROUP *group, EC_POINT *P, EC_POINT *Q, BN_CTX* ctx){
 
 /*}*/
 
-BIGNUM* find_z_sswu(char* sn){
-    BIGNUM *z = BN_new();
+int find_z_sswu(char* sn, BIGNUM *z){
     if(strcmp(sn, "prime256v1")==0){
         BN_dec2bn(&z,"-10"); // dec to binary
-        return z;
+        return 1;
     }
-    BN_free(z);
-    return NULL;
+    return 0;
 }
 
 EC_POINT* map_to_curve_sswu(EC_GROUP *group, BIGNUM *c1, BIGNUM *c2, BIGNUM *a, BIGNUM *b, BIGNUM *p, BIGNUM *z, BIGNUM *u, BN_CTX *ctx){
@@ -207,7 +205,8 @@ int main(int argc, char* argv[])
     int nid = OBJ_sn2nid(argv[1]);
     EC_GROUP* group = EC_GROUP_new_by_curve_name(nid);
 
-    BIGNUM *a, *b, *p, *h, *z, *c1, *c2, *u0, *u1,  *x, *y;
+    BIGNUM *a, *b, *p, *z, *c1, *c2, *u0, *u1,  *x, *y;
+    const BIGNUM *h;
     BN_CTX *ctx;
 
     BIO    *out;
@@ -219,20 +218,24 @@ int main(int argc, char* argv[])
     //G	(0x6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296, 0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5)
     //n	0xffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551
     
-    h = BN_new();
-    BN_dec2bn(&h,"1"); //dec to binary
+    /*h = BN_new();*/
+    /*BN_dec2bn(&h,"1"); //dec to binary*/
+    h = EC_GROUP_get0_cofactor(group);
 
     a = BN_new();
-    BN_dec2bn(&a,"-3"); //dec to binary
+    /*BN_dec2bn(&a,"-3"); //dec to binary*/
 
     b = BN_new();
-    BN_hex2bn(&b,"5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b"); 
+    /*BN_hex2bn(&b,"5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b"); */
 
     p = BN_new();
-    BN_hex2bn(&p,"ffffffff00000001000000000000000000000000ffffffffffffffffffffffff");
+    /*BN_hex2bn(&p,"ffffffff00000001000000000000000000000000ffffffffffffffffffffffff");*/
+
+    EC_GROUP_get_curve(group, p, a, b, ctx);
 
     z = BN_new();
-    BN_dec2bn(&z,"-10"); // dec to binary
+    /*BN_dec2bn(&z,"-10"); // dec to binary*/
+    find_z_sswu(argv[1], z);
 
     c1 = BN_new();
     BN_mod_inverse(c1, a, p, ctx);
@@ -252,7 +255,8 @@ int main(int argc, char* argv[])
 
     //calc
     u0 = BN_new();
-    BN_hex2bn(&u0,"ad5342c66a6dd0ff080df1da0ea1c04b96e0330dd89406465eeba11582515009"); 
+    /*BN_hex2bn(&u0,"ad5342c66a6dd0ff080df1da0ea1c04b96e0330dd89406465eeba11582515009"); */
+    BN_hex2bn(&u0,argv[2]); 
 
     /*x = BN_new();*/
     /*y = BN_new();*/
@@ -268,7 +272,8 @@ int main(int argc, char* argv[])
     BIO_printf(out, "map to curve:\nu0: %s\nQ0: %s\n", BN_bn2hex(u0), Q0_uncompressed_hex);
 
     u1 = BN_new();
-    BN_hex2bn(&u1,"8c0f1d43204bd6f6ea70ae8013070a1518b43873bcd850aafa0a9e220e2eea5a"); 
+    /*BN_hex2bn(&u1,"8c0f1d43204bd6f6ea70ae8013070a1518b43873bcd850aafa0a9e220e2eea5a"); */
+    BN_hex2bn(&u1,argv[3]); 
     EC_POINT *Q1 = map_to_curve_sswu(group, c1, c2, a, b, p, z, u1, ctx);
     char *Q1_uncompressed_hex = EC_POINT_point2hex(group, Q1, POINT_CONVERSION_UNCOMPRESSED, ctx);
     BIO_printf(out, "map to curve:\nu1: %s\nQ1: %s\n", BN_bn2hex(u1), Q1_uncompressed_hex);
