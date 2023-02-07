@@ -12,7 +12,7 @@ plaintext_fname = sys.argv[4]
 
 ciphertext = open(ciphertext_fname,"rb")
 
-ef = ReadOnlyEncryptedFile(ciphertext,key,iv)
+ef = EncryptionIterator(ciphertext,key,iv)
 
 with open(plaintext_fname,"wb") as plaintext:
     for chunk in ef:
