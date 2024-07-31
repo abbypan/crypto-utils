@@ -36,6 +36,7 @@ openssl crl2pkcs7 -nocrl -certfile test.crt -out test.p7c -outform DER -certfile
 #openssl cms -cmsout -in test.p7s -inform DER -noout -print
 
 
+
 #PKCS #12文件转换
 openssl pkcs12 -export -out test.pfx -inkey test.key -in test.crt -certfile CA.crt -password pass:sometestpw
 openssl pkcs12 -in test.pfx -out test_all.cer -nodes -password pass:sometestpw
@@ -47,16 +48,22 @@ openssl ecparam -list_curves
 
 #ecc generate private key & public key
 openssl ecparam -genkey -name prime256v1 -noout -out ecc_priv.pem
+#pkcs8
+#https://www.openssl.org/docs/manmaster/man1/openssl-pkcs8.html
+openssl pkcs8 -outform DER -in ecc_priv.der -nocrypt -topk8 -out ecc_priv_pk8.der
+
+# ecc pub
 openssl ec -in ecc_priv.pem -pubout -out ecc_pub.pem
 openssl ec -pubin -in ecc_pub.pem -conv_form compressed -outform DER -out ecc_pub_compressed.der
+openssl ec -pubin -in ecc_pub.pem -outform DER -conv_form uncompressed -pubout -out ecc_pub_uncompressed.der
 
 #ecc csr
 openssl req -new -key ecc_priv.pem -out ecc.csr -sha256 -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=Cybersecurity/CN=Infosec"
 openssl req -verify -in ecc.csr -text -noout
 
-openssl req -config ecc_ee_ext.cnf -new -key ecc_priv.pem -out ecc_ee_ext.csr
+openssl req -config ee_ext.cnf -new -key ecc_priv.pem -out ecc_ee_ext.csr
 openssl req -verify -in ecc_ee_ext.csr -text -noout
-openssl x509 -req -days 360 -in ecc_ee_ext.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out ecc_ee_ext.crt -sha256 -extfile ecc_ee_ext.cnf -extensions req_ext
+openssl x509 -req -days 360 -in ecc_ee_ext.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out ecc_ee_ext.crt -sha256 -extfile ee_ext.cnf -extensions req_ext
 openssl x509 -text -in ecc_ee_ext.crt
 
 #ecc sign & verify
@@ -116,3 +123,21 @@ cat src.aes-256-gcm.enc | ./aes256gcm-decrypt $KEY $IV
 
 #hmac
 openssl mac -macopt digest:SHA256 -macopt hexkey:a27e195cf3ea9755eceb1f77ca0dd20ba1fdaa8832f1b2fb637c8912ad3dce13 -in plain.txt HMAC
+
+#sm
+openssl ecparam -genkey -name SM2 -out sm2_priv.pem
+openssl req -new -key sm2_priv.pem -out sm2.csr -sm3 -pkeyopt "sm2_id:123456786666" -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=Cybersecurity/CN=PB02210"
+openssl x509 -req -in sm2.csr -signkey sm2_priv.pem -out sm2.crt -sm3
+openssl x509 -in sm2.crt -text -noout
+
+openssl ecparam -genkey -name SM2 -out sm2_root_priv.pem
+openssl req -new -nodes -key sm2_root_priv.pem -out sm2_root.csr -sm3 -pkeyopt "sm2_id:123456789999" -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=West/CN=Information Science and Technology"
+openssl x509 -req -in sm2_root.csr -signkey sm2_root_priv.pem -out sm2_root.crt -sm3 -extfile root_ext.cnf
+openssl x509 -in sm2_root.crt -text -noout
+
+openssl ecparam -genkey -name SM2 -noout -out sm2_ee_priv.pem
+openssl pkey -in sm2_ee_priv.pem -pubout -out sm2_ee_pub.pem
+openssl req -new -sm3 -nodes -out sm2_ee.csr -key sm2_ee_priv.pem -config ee.cnf
+openssl req -verify -in sm2_ee.csr -text -noout
+openssl x509 -req -in sm2_ee.csr -CA sm2_root.crt -CAkey sm2_root_priv.pem -CAcreateserial -out sm2_ee_cert.pem -days 1111 -sm3 -extfile ee_ext.cnf
+openssl x509 -text -in sm2_ee_cert.pem
