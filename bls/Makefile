@@ -1,7 +1,7 @@
 CC := gcc
 CFLAGS := -l bls384_256
 
-all: bls12_381_keygen bls12_381_export_pubkey bls_sign bls_verify bls_multi_sign
+all: bls12_381_keygen bls12_381_export_pubkey bls_sign bls_verify bls_multi_sign bls_threshold_sign
 
 clean:
-	/bin/rm bls12_381_keygen bls12_381_export_pubkey bls_sign bls_verify bls_multi_sign
+	/bin/rm bls12_381_keygen bls12_381_export_pubkey bls_sign bls_verify bls_multi_sign bls_threshold_sign
