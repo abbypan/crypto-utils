@@ -4,7 +4,7 @@ https://www.rfc-editor.org/rfc/rfc4493.html
 
 ## install
 
-    gcc -lcrypto -lssl aes-128-cmac.c -o aes-128-cmac
+    gcc aes-128-cmac.c -o aes-128-cmac -lssl -lcrypto
 
 ## aes-128-cmac
 
