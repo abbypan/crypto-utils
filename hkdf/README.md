@@ -4,7 +4,7 @@ https://datatracker.ietf.org/doc/html/rfc5869
 
 ## install
 
-    cpanm Crypt::KeyDerivation 
+    cpanm CryptX
 
 ## hkdf-sha256
 

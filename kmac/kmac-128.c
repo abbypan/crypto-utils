@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
 
     char *mac_hexstr = OPENSSL_buf2hexstr(mac, (long) mac_len);
 
-    printf("key: %s\ndata: %s\ncustom: %s\nxof_enable: %d\nmac_len: %d\nkmac-128: %s\n", 
+    printf("key_hexstr: %s\ndata_hexstr: %s\ncustom: %s\nxof_enable: %d\nmac_len: %d\nkmac-128_hexstr: %s\n", 
             argv[1], argv[2], argv[3], xof_enabled, mac_len, mac_hexstr);
 
     OPENSSL_free(key);
