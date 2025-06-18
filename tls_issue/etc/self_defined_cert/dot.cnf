@@ -1,0 +1,20 @@
+[req]
+distinguished_name = req_distinguished_name
+default_md = sha256
+req_extensions = v3_req
+prompt = no
+[req_distinguished_name]
+C=CN
+ST=Anhui
+L=Hefei
+O=USTC
+OU=Cybersecurity
+emailAddress=some@example.com
+CN = ns1.example.com
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = ns1.example.com
+DNS.2 = ns2.example.com
