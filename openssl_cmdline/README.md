@@ -1,4 +1,4 @@
-# openssl cmd
+# openssl 
 
 ## ciphers
 openssl ciphers
