@@ -6,7 +6,7 @@
 #include <openssl/ec.h>
 #include <openssl/pem.h>
 #include <openssl/bio.h>
-#include <openssl/core_names.h>
+//#include <openssl/core_names.h>
 
 #define BUFLEN 2048
 
