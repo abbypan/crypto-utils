@@ -10,6 +10,6 @@ https://github.com/open-quantum-safe/liboqs
 
 ## usage
 
-./ml-kem "ML-KEM-512"
-./ml-kem "ML-KEM-768"
-./ml-kem "ML-KEM-1024"
+	./ml-kem "ML-KEM-512"
+	./ml-kem "ML-KEM-768"
+	./ml-kem "ML-KEM-1024"
