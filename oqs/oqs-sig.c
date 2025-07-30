@@ -72,10 +72,10 @@ int main(int argc, char *argv[]) {
 	hexdump("signature", signature, signature_len);
 
 	if (OQS_SIG_verify(sig, message, message_len, signature, signature_len, public_key) != OQS_SUCCESS) {
-		printf("Failed to verify signature!\n");
+		printf("Failed to verify %s signature!\n", alg_name);
 		goto cleanup;
 	}
-	printf("Successful to verify signature!\n");
+	printf("Successful to verify %s signature!\n", alg_name);
 
 cleanup:
 	OQS_SIG_free(sig);
