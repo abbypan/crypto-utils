@@ -15,6 +15,8 @@ openssl s_client -connect www.baidu.com -status -msg -CAfile ca-root.pem -untrus
  
 openssl verify -verbose -x509_strict -CAfile ca-root.pem -untrusted ca-server.pem tls_server.pem
 
+openssl s_client -connect xxx.example:443 -status -msg -key someclient_key.pem -cert someclient_cert.pem -CAfile somecachain.crt -state
+
 
 ## cert
 
@@ -218,4 +220,11 @@ openssl req -verify -in sm2_ee.csr -text -noout
 openssl x509 -req -in sm2_ee.csr -CA sm2_root.crt -CAkey sm2_root_priv.pem -CAcreateserial -out sm2_ee_cert.pem -days 1111 -sm3 -extfile ee_ext.cnf
 
 openssl x509 -text -in sm2_ee_cert.pem
+
+# curl
+
+curl --tlsv1.2 --tls-max 1.2  --location 'https://xxx.example.com/server.php' --cacert "somecachain.crt" -k
+
+curl --tlsv1.3 --tls-max 1.3  --location 'https://xxx.example.com/server.php' --key someclient_key.pem -E someclient_cert.pem --cacert "somecachain.crt" -k
+
 
