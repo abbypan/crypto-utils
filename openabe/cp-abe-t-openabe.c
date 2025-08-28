@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
 	cpabe.exportSecretParams(msk);
 	cout << "msk: " << msk << endl << endl;
 
-	string ct, pt = "kh secret data details", dog_pt, cat_pt;
+	string ct, pt = "some secret data details", dog_pt, cat_pt;
 
 	cpabe.keygen("|dog|tofu", "dog");
 	std::string dogKey;

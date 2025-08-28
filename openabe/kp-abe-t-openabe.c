@@ -15,6 +15,7 @@ int main(int argc, char **argv) {
 	cout << "KP-ABE:" << endl;
 
 	OpenABECryptoContext kpabe("KP-ABE");
+
 	kpabe.generateParams();
 
 	std::string mpk;
@@ -25,7 +26,7 @@ int main(int argc, char **argv) {
 	kpabe.exportSecretParams(msk);
 	cout << "msk: " << msk << endl << endl;
 
-	string ct, pt = "kh secret data details", dog_pt, cat_pt;
+	string ct, pt = "some secret data details", dog_pt, cat_pt;
 
 	kpabe.keygen("dog and tofu", "dog");
 	std::string dogKey;
