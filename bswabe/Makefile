@@ -4,8 +4,8 @@ CFLAGS := -lbswabe -lpbc -lgmp -lcrypto `pkg-config --cflags --libs glib-2.0`
 
 
 all: 
-	$(CC) $(LDFLAGS) cp-abe-t.c -o cp-abe-t   $(CFLAGS)
+	$(CC) $(LDFLAGS) bsw17.c -o bsw17   $(CFLAGS)
  
 
 clean:
-	/bin/rm cp-abe-t
+	/bin/rm bsw17

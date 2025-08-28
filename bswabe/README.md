@@ -60,4 +60,4 @@ https://acsc.cs.utexas.edu/cpabe/tutorial.html
 # test
 
 	make
-	./cp-abe-t
+	./bsw17
