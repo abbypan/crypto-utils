@@ -60,4 +60,4 @@ https://acsc.cs.utexas.edu/cpabe/tutorial.html
 # test
 
 	make
-	./bsw17
+	./bsw07
