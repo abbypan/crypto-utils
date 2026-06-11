@@ -109,10 +109,10 @@ my ( $na, $ek_key_a_r, $msg1 ) = @{$msg1_r}{qw/na x_r msg1/};
 
 my ( $ek_a, $ek_a_priv, $ek_a_pub, $ek_a_pub_hex_compressed, $ek_a_pub_pkey, $ek_a_priv_pkey ) =
   @{$ek_key_a_r}{qw/priv_key priv_bn pub_point pub_hex pub_pkey priv_pkey/};
-  write_pubkey_to_pem("$Bin/sigma-a_ek_pub.pem", $ek_a_pub_pkey);
+  write_pubkey_to_pem("$Bin/sigma-ek_a_pub.pem", $ek_a_pub_pkey);
 ###  $ek_a_pub_hex_compressed
 
-write_key_to_pem( "$Bin/sigma-a_ek_priv.pem", $ek_a_priv_pkey );
+write_key_to_pem( "$Bin/sigma-ek_a_priv.pem", $ek_a_priv_pkey );
 ###  ek_a_priv: $ek_a_priv->to_hex
 
 ### msg1: unpack("H*", $msg1)
@@ -142,10 +142,10 @@ my ( $ek_b,      $ek_b_priv,       $ek_b_pub, $ek_b_pub_hex_compressed, $ek_b_pu
 ### $other_data_b
 ### nb: $nb->to_hex
 
-write_pubkey_to_pem( "$Bin/sigma-b_ek_pub.pem", $ek_b_pub_pkey );
+write_pubkey_to_pem( "$Bin/sigma-ek_b_pub.pem", $ek_b_pub_pkey );
 ###  $ek_b_pub_hex_compressed
 
-write_key_to_pem( "$Bin/sigma-b_ek_priv.pem", $ek_b_priv_pkey );
+write_key_to_pem( "$Bin/sigma-ek_b_priv.pem", $ek_b_priv_pkey );
 ###  ek_b_priv: $ek_b_priv->to_hex
 
 ### msg2: unpack("H*", $msg2)
@@ -170,7 +170,7 @@ my $a_verify_msg2 = a_verify_msg2(
 );
 
 my $a_recv_ek_b_pub_pkey = gen_ec_pubkey( $group_name, unpack( "H*", $a_recv_msg2_r->{gy} ) );
-write_pubkey_to_pem( "$Bin/sigma-a_recv_b_ek_pub.pem", $a_recv_ek_b_pub_pkey  );
+write_pubkey_to_pem( "$Bin/sigma-ek-a_recv_b_pub.pem", $a_recv_ek_b_pub_pkey  );
 
 my $a_send_msg3 = a_send_msg3(
   $id_a,
@@ -216,6 +216,8 @@ my $a_ks = derive_ks( $a_recv_msg2_r->{derive_key}{z}, $na->to_bin, $a_recv_msg2
 # }
 
 is( $a_ks, $b_ks, 'sigma session key' );
+
+
 
 done_testing;
 

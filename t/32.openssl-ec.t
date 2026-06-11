@@ -22,7 +22,7 @@ my $pub_pkey2 = gen_ec_pubkey($group_name, $pub_hex);
 my $pub_hex2= read_ec_pubkey($pub_pkey2, 0);
 print "pub2:", $pub_hex, "\n";
 is($pub_hex2, $pub_hex, "gen_ec_pubkey $group_name");
-write_pubkey_to_pem("$FindBin::RealBin/ecc_nist_p256_pub.recover.pem", $pub_pkey2);
+#write_pubkey_to_pem("$FindBin::RealBin/ecc_nist_p256_pub.recover.pem", $pub_pkey2);
 
 my $priv_pkey = read_key_from_pem("$FindBin::RealBin/ecc_nist_p256_priv.pem");
 my $priv_hex = read_key($priv_pkey);

@@ -25,7 +25,7 @@ my $priv_hex4 = read_key($priv_pkey4);
 my $priv_bin4 = pack("H*", $priv_hex4);
 is($priv_bin4, pack("H*", 'F8A6DA9856A869DB859C47C0F10021585444BA7A8E00E4FB44564F5851317B50'), "read_ec_key_from_pem $group_name");
 my $priv_pkey5 = gen_ec_key($group_name,  unpack("H*", $priv_bin4));
-write_key_to_pem("$FindBin::RealBin/x25519_a_priv.recover.pem", $priv_pkey5);
+#write_key_to_pem("$FindBin::RealBin/x25519_a_priv.recover.pem", $priv_pkey5);
 my $priv_hex5 = read_key($priv_pkey5);
 my $priv_bin5 = pack("H*", $priv_hex5);
 is($priv_bin5, $priv_bin4, "gen_ec_key $group_name");

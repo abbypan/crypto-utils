@@ -283,7 +283,7 @@ BF_EXPORT unsigned char* read_key(EVP_PKEY *pkey)
 
     priv_hex = BN_bn2hex(priv_bn);
 
-    OPENSSL_free(priv_bn);
+    BN_free(priv_bn);
 
     return priv_hex;
 
@@ -331,8 +331,13 @@ BF_EXPORT EVP_PKEY* read_key_from_pem(unsigned char* keyfile)
     inf = BIO_new_file(keyfile, "r");
 
     pkey = PEM_read_bio_PrivateKey(inf, NULL, NULL, NULL);
+    BIO_free(inf);
 
-    BIO_set_close(inf, BIO_CLOSE);
+    if (pkey == NULL) {
+        inf = BIO_new_file(keyfile, "r");
+        pkey = PEM_read_bio_PUBKEY(inf, NULL, NULL, NULL);
+        BIO_free(inf);
+    }
 
     return pkey;
 }
@@ -569,7 +574,7 @@ BF_EXPORT unsigned char* _ecdh(EVP_PKEY *priv, EVP_PKEY *peer_pub, size_t *z_len
     z = OPENSSL_malloc(*z_len_ptr);
     EVP_PKEY_derive(ctx, z, z_len_ptr);
 
-    OPENSSL_free(ctx);
+    EVP_PKEY_CTX_free(ctx);
 
     return z;
 }
@@ -609,8 +614,8 @@ BF_EXPORT EC_POINT * mul_ec_point(unsigned char *group_name, BIGNUM *x, EC_POINT
     EC_POINT_mul(group, P, x, Q, y, ctx);
 
 err:
-    OPENSSL_free(group);
-    OPENSSL_free(ctx);
+    EC_GROUP_free(group);
+    BN_CTX_free(ctx);
 
     return P;
 
@@ -639,14 +644,14 @@ BIGNUM *x_bn, BIGNUM *y_bn, int clear_cofactor_flag
     if(clear_cofactor_flag){
 	    EC_POINT *P = EC_POINT_new(group);
         clear_cofactor(group, P, Q, ctx);
-	    OPENSSL_free(Q);
+	    EC_POINT_free(Q);
 	    Q = P;
     }
 
     //printf("point2hex::: %s\n", EC_POINT_point2hex(group, Q, 4, ctx)); 
 
-    OPENSSL_free(group);
-    OPENSSL_free(ctx);
+    EC_GROUP_free(group);
+    BN_CTX_free(ctx);
     //OPENSSL_free(x_bn);
     //OPENSSL_free(y_bn);
 
@@ -682,8 +687,11 @@ BF_EXPORT EVP_PKEY * gen_ec_key(unsigned char *group_name, unsigned char* priv_h
         }
     }
 
-    if(pkey)
+    if(pkey) {
+        EVP_PKEY_CTX_free(ctx);
+        OPENSSL_free(priv);
         return pkey;
+    }
 
     *p++ = OSSL_PARAM_construct_utf8_string(OSSL_PKEY_PARAM_GROUP_NAME, group_name, 0);
 
@@ -712,7 +720,7 @@ BF_EXPORT EVP_PKEY * gen_ec_key(unsigned char *group_name, unsigned char* priv_h
         EVP_PKEY_keygen(ctx, &pkey);
     }
 
-    OPENSSL_free(ctx);
+    EVP_PKEY_CTX_free(ctx);
     OPENSSL_free(priv);
 
     return pkey;

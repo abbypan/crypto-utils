@@ -9,7 +9,7 @@ ok( __PACKAGE__->can('OBJ_sn2nid'), 'OBJ_sn2nid is exported' );
 ok( __PACKAGE__->can('slurp'), 'slurp is exported' );
 ok( __PACKAGE__->can('bin2hex'), 'bin2hex is exported' );
 
-open my $pm_fh, '<', 'Crypto/Utils/OpenSSL.pm' or die "Crypto/Utils/OpenSSL.pm: $!";
+open my $pm_fh, '<', 'lib/Crypto/Utils/OpenSSL.pm' or die "lib/Crypto/Utils/OpenSSL.pm: $!";
 my $pm = do { local $/; <$pm_fh> };
 
 unlike( $pm, qr/\$ffi->attach\(\s*\[/, 'bundled FFI attach calls do not rename functions' );

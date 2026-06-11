@@ -11,7 +11,7 @@ use warnings;
 #use Smart::Comments;
 
 use Test::More;
-use FindBin qw($Bin);
+use FindBin;
 
 use CBOR::XS;
 
@@ -34,7 +34,6 @@ use Crypto::Utils::OPAQUE;
 use CBOR::XS;
 
 #use bignum;
-use FindBin qw($Bin);
 
 my $prefix = "VOPRF09-";
 my $mode = 0x00;
@@ -60,7 +59,7 @@ is($req_r->{request}{data}, pack("H*", '02a0e1e2b7d6676136224e19c9fdd495d91f49bf
 
 my $s_priv_hex = 'c36139381df63bfc91c850db0b9cfbec7a62e86d80040a41aa7725bf0e79d5e5';
 my $s_priv_pkey = gen_ec_key($group_name, $s_priv_hex);
-write_key_to_pem("$Bin/opaque-b_s_priv.pem", $s_priv_pkey);
+write_key_to_pem("$FindBin::RealBin/opaque-b_s_priv.pem", $s_priv_pkey);
 
 my $s_pub = pack("H*", '035f40ff9cf88aa1f5cd4fe5fd3da9ea65a4923a5594f84fd9f2092d6067784874');
 my $oprf_seed = pack("H*", '62f60b286d20ce4fd1d64809b0021dad6ed5d52a2c8cf27ae6582543a0a8dce2');
@@ -96,7 +95,7 @@ my $upload_record = $finalize_r->{record};
 is($finalize_r->{record}{masking_key}, pack("H*", '26605b3dae07af6f79501f0bfad82c904b61a59fa7038d87b66b4fdac4707541'), 'finalize_registration_request');
 
 my $b_recv_a_s_pub_pkey = gen_ec_pubkey($group_name, unpack("H*", $upload_record->{c_pub}));
-write_pubkey_to_pem("$Bin/opaque-b_recv_a_s_pub.pem", $b_recv_a_s_pub_pkey );
+write_pubkey_to_pem("$FindBin::RealBin/opaque-b_recv_a_s_pub.pem", $b_recv_a_s_pub_pkey );
 
 
 
@@ -202,7 +201,7 @@ is($cred_res_r->{masked_response}, pack("H*", 'adb901cb9a50203d9df723560fafa4ce2
 my $other_data_b = encode_cbor([ @{$cred_res_r}{qw/Z masking_nonce masked_response/} ]);
 ### b_send_msg2
 my $b_send_msg2_r = b_send_msg2(
-  $group_name, $b_recv_msg1_r, $id_b, "$Bin/opaque-b_s_priv.pem",$random_range, $point_compress_t, $hash_name, $key_len, \&encode_cbor,
+  $group_name, $b_recv_msg1_r, $id_b, "$FindBin::RealBin/opaque-b_s_priv.pem",$random_range, $point_compress_t, $hash_name, $key_len, \&encode_cbor,
   $mac_func,
     $sign_func,
   $enc_func,
@@ -260,12 +259,12 @@ is($recover_r->{export_key}, pack("H*", '77869b0d11debf6fc88c1d192dde9546baf528b
 is($recover_r->{c_priv}->to_hex, 'D1D280F712E4EBF3C881C686E13C281BC3A3FAB30A00411A350F4F8B7A1EA550', 'recover_credentials');
 
 my $a_recover_a_s_priv_pkey = gen_ec_key($group_name, $recover_r->{c_priv}->to_hex);
-write_key_to_pem("$Bin/opaque-a_recover_c_s_priv.pem", $a_recover_a_s_priv_pkey );
+write_key_to_pem("$FindBin::RealBin/opaque-a_recover_c_s_priv.pem", $a_recover_a_s_priv_pkey );
 
 my $a_recover_b_s_pub_pkey = gen_ec_pubkey($group_name, unpack("H*", $recover_r->{s_pub}));
-write_pubkey_to_pem("$Bin/opaque-a_recover_b_s_pub.pem", $a_recover_b_s_pub_pkey );
+write_pubkey_to_pem("$FindBin::RealBin/opaque-a_recover_b_s_pub.pem", $a_recover_b_s_pub_pkey );
 my $a_verify_msg2 = a_verify_msg2(
-    $msg1_r, $a_recv_msg2_r, "$Bin/opaque-a_recover_b_s_pub.pem",
+    $msg1_r, $a_recv_msg2_r, "$FindBin::RealBin/opaque-a_recover_b_s_pub.pem",
   \&encode_cbor, 
   $mac_func,
   $sig_verify_func, 
@@ -276,7 +275,7 @@ write_pubkey_to_pem( 'opaque-a_recv_b_ek_pub.pem', $a_recv_ek_b_pub_pkey  );
 
 my $a_send_msg3 = a_send_msg3(
   $id_a,
-"$Bin/opaque-a_recover_c_s_priv.pem", 
+"$FindBin::RealBin/opaque-a_recover_c_s_priv.pem", 
   $msg1_r, 
   $a_recv_msg2_r, 
   \&encode_cbor,
@@ -294,7 +293,7 @@ my $msg3_verify_res = b_recv_msg3(
   $b_recv_msg1_r, 
   $b_send_msg2_r,
   $a_send_msg3,
-"$Bin/opaque-b_recv_a_s_pub.pem", 
+"$FindBin::RealBin/opaque-b_recv_a_s_pub.pem", 
   \&encode_cbor, \&decode_cbor,
   $mac_func,
     $sig_verify_func, 
@@ -319,6 +318,8 @@ my $a_ks = derive_ks( $a_recv_msg2_r->{derive_key}{z}, $na->to_bin, $a_recv_msg2
 # }
 
 is( $a_ks, $b_ks, 'sigma session key' );
+
+unlink($_) for glob("$FindBin::RealBin/opaque-*.pem");
 
 done_testing;
 
