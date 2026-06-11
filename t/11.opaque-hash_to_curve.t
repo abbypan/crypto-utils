@@ -4,8 +4,8 @@ use warnings;
 use Test::More ;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
-use Crypt::OpenSSL::BaseFunc ;
-use Crypt::OpenSSL::BaseFunc;
+use Crypto::Utils::OpenSSL ;
+use Crypto::Utils::OpenSSL;
 #use Data::Dump qw/dump/;
 
 #blind: x, dst, P= hash_to_group(x, dst), blind, blinded_element
@@ -26,7 +26,7 @@ my $DST = 'HashToGroup-VOPRF09-'.pack("H*", '000003');
 
 my $group_name = "prime256v1";
 my $type = 'sswu';
-#my $P = hash_to_curve($msg, $DST, $group_name, $type, 'SHA256', \&Crypt::OpenSSL::BaseFunc::expand_message_xmd , 0 );
+#my $P = hash_to_curve($msg, $DST, $group_name, $type, 'SHA256', \&Crypto::Utils::OpenSSL::expand_message_xmd , 0 );
 my $P = hash_to_curve($msg, $DST, $group_name, $type, 'SHA256', \&expand_message_xmd , 1 );
 
 my $bn = sn_point2hex($group_name, $P, 4);

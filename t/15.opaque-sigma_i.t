@@ -15,20 +15,20 @@ use FindBin qw($Bin);
 
 use CBOR::XS;
 
-use Crypt::Protocol::SIGMA;
+use Crypto::Utils::SIGMA;
 
 use Crypt::KeyDerivation ':all';
 use Digest::SHA qw/hmac_sha256 sha256/;
 use Crypt::AuthEnc::GCM qw(gcm_encrypt_authenticate gcm_decrypt_verify);
 
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::OpenSSL::BaseFunc;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OpenSSL;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
 use Crypt::OpenSSL::ECDSA;
 
-use Crypt::Protocol::OPRF;
-use Crypt::Protocol::OPAQUE;
+use Crypto::Utils::OPRF;
+use Crypto::Utils::OPAQUE;
 
 #use Smart::Comments;
 use CBOR::XS;

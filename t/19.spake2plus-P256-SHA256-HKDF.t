@@ -9,11 +9,11 @@ use Test::More;
 #use Smart::Comments;
 
 use lib '../lib';
-use Crypt::Protocol::SPAKE2Plus;
-use Crypt::OpenSSL::BaseFunc;
+use Crypto::Utils::SPAKE2Plus;
+use Crypto::Utils::OpenSSL;
 
 
-my $spake2plus = Crypt::Protocol::SPAKE2Plus->new(curve_name => 'prime256v1');
+my $spake2plus = Crypto::Utils::SPAKE2Plus->new(curve_name => 'prime256v1');
 my $curve_hr = $spake2plus->{curve_hr};
 my $curve = $spake2plus->{curve};
 my $M = $spake2plus->init_M_or_N('M');

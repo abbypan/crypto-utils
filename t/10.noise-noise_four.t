@@ -10,9 +10,9 @@ use Test::More;
 
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
-#use Crypt::OpenSSL::BaseFunc;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::Protocol::Noise;
+#use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::Noise;
 
 use CBOR::XS;
 use Digest::SHA qw/hmac_sha256 sha256/;

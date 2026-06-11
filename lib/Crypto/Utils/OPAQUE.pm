@@ -1,5 +1,5 @@
 #ABSTRACT: OPAQUE protocol
-package Crypt::Protocol::OPAQUE;
+package Crypto::Utils::OPAQUE;
 
 use strict;
 use warnings;
@@ -10,11 +10,11 @@ require Exporter;
 use Crypt::KeyDerivation ':all';
 
 use Carp;
-use Crypt::OpenSSL::BaseFunc;
+use Crypto::Utils::OpenSSL;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
 #use Crypt::OpenSSL::ECDSA;
-use Crypt::Protocol::OPRF;
+use Crypto::Utils::OPRF;
 
 #use Smart::Comments;
 
@@ -336,3 +336,61 @@ sub recover {
 } ## end sub recover
 
 1;
+
+__END__
+
+=pod
+
+=encoding utf8
+
+=head1 NAME
+
+L<Crypto::Utils::OPAQUE> 
+
+=head2 PROTOCOL
+
+L<https://datatracker.ietf.org/doc/draft-irtf-cfrg-opaque/>
+
+=head1 FUNCTION
+
+=head2 create_cleartext_credentials
+ 
+ my $cleartext_credentials = create_cleartext_credentials($s_pub, $c_pub, $s_id, $c_id);
+
+=head2 store
+
+ my $store_r = store($randomized_pwd, $s_pub, $s_id, $c_id, $Nn, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $mac_func);
+
+=head2 recover
+
+ my $recover_r = recover($randomized_pwd, $s_pub, $envelope, $s_id, $c_id, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $mac_func);
+
+=head2 create_registration_request
+
+  my $registration_req_r = create_credential_request($request, $s_pub, $oprf_seed, $credential_identifier, $DSI, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $point_compress_t);
+
+=head2 create_registration_response
+
+  my $registration_res_r = create_credential_response($request, $s_pub, $oprf_seed, $credential_identifier, $DSI, $envelope, $masking_key, $Nn, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $point_compress_t, $pack_func);
+
+=head2 finalize_registration_request
+  
+  my $registration_finalize_r = finalize_registration_request($request, $response, $pwd, $c_id, $s_id, $Nn, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $mac_func, $pwd_harden_func);
+
+=head2 derive_random_pwd
+
+  my $randomize_pwd = derive_random_pwd($ec_params, $pwd, $blind, $evaluate_element, $hash_name, $harden_func);
+
+=head2 create_credential_request
+  
+  my $cred_req_r = create_credential_request($request, $s_pub, $oprf_seed, $credential_identifier, $DSI, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $point_compress_t);
+
+=head2 create_credential_response
+
+   my $cred_res_r = create_credential_response($request, $s_pub, $oprf_seed, $credential_identifier, $DSI, $envelope, $masking_key, $Nn, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $point_compress_t, $pack_func);
+
+=head2 recover_credentials
+
+    my $recover_r = recover_credentials($cred_request, $cred_response, $pwd, $c_id, $s_id, $Nseed, $group_name, $info, $DST, $hash_name, $expand_message_func, $mac_func, $pwd_harden_func, $unpack_func);
+
+=cut

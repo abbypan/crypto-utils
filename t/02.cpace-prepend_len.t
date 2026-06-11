@@ -9,9 +9,9 @@ use warnings;
 use Test::More ;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::Protocol::CPace ;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::CPace ;
 #use Data::Dump qw/dump/;
 
 

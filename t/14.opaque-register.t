@@ -8,17 +8,17 @@ use Digest::SHA qw/hmac_sha256 sha256/;
 use Test::More ;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::Protocol::OPRF;
-use Crypt::Protocol::OPAQUE;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OPRF;
+use Crypto::Utils::OPAQUE;
 
 #use Smart::Comments;
 use CBOR::XS;
 
 #use bignum;
 use FindBin qw($Bin);
-use Crypt::Protocol::SIGMA;
+use Crypto::Utils::SIGMA;
 use Crypt::KeyDerivation ':all';
 use Crypt::AuthEnc::GCM qw(gcm_encrypt_authenticate gcm_decrypt_verify);
 

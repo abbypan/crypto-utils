@@ -10,9 +10,9 @@ use Test::More ;
 use List::Util qw/min/;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::Protocol::CPace ;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::CPace ;
 
 my $DSI = 'CPaceP256_XMD:SHA-256_SSWU_NU_';
 my $PRS = 'Password';
@@ -21,7 +21,7 @@ my $sid = pack("H*", "34b36454cab2e7842c389f7d88ecb7df");
 my $group_name = 'prime256v1';
 my $type = 'sswu';
 my $hash_name = 'SHA256';
-my ($G, $params_ref) = Crypt::Protocol::CPace::calculate_generator($DSI, $PRS, $CI, $sid, $group_name, $type, $hash_name, \&Crypt::OpenSSL::BaseFunc::expand_message_xmd, 1);
+my ($G, $params_ref) = Crypto::Utils::CPace::calculate_generator($DSI, $PRS, $CI, $sid, $group_name, $type, $hash_name, \&Crypto::Utils::OpenSSL::expand_message_xmd, 1);
 
 my $group = $params_ref->{group};
 my $ctx = $params_ref->{ctx};

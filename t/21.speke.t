@@ -11,8 +11,8 @@ use List::Util qw/min/;
 use Test::More ;
 
 use Crypt::OpenSSL::EC;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::Protocol::SPEKE;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::SPEKE;
 
 # a, b with same info
 my $PRS = 'Password';

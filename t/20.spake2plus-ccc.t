@@ -8,12 +8,12 @@ use Test::More;
 #use Smart::Comments;
 
 use lib '../lib';
-use Crypt::Protocol::SPAKE2Plus;
-use Crypt::OpenSSL::BaseFunc;
+use Crypto::Utils::SPAKE2Plus;
+use Crypto::Utils::OpenSSL;
 use Digest::CMAC;
 
 
-my $spake2plus = Crypt::Protocol::SPAKE2Plus->new(
+my $spake2plus = Crypto::Utils::SPAKE2Plus->new(
     curve_name => 'prime256v1',
     mac=> sub {
         my ($key, $data) = @_;
@@ -39,7 +39,7 @@ my $B = '';
 my $pwd = 'pleaseletmein';
 my $salt = 'yellowsubmarines';
 
-my ($w0_bn, $w1_bn) = $spake2plus->calc_w0_w1(\&Crypt::Protocol::SPAKE2Plus::bmod_w0_w1_alt, $pwd, $A, $B, $salt, 32768, 8, 1, 80);
+my ($w0_bn, $w1_bn) = $spake2plus->calc_w0_w1(\&Crypto::Utils::SPAKE2Plus::bmod_w0_w1_alt, $pwd, $A, $B, $salt, 32768, 8, 1, 80);
 
 # A, B: w0, w1, L = w1*P
 

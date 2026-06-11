@@ -11,9 +11,9 @@ use warnings;
 use Test::More;
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Bignum;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::OpenSSL::BaseFunc;
-use Crypt::Protocol::OPRF;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OpenSSL;
+use Crypto::Utils::OPRF;
 
 
 my $prefix         = "VOPRF09-";
